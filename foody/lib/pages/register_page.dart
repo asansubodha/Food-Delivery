@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:foody/components/button.dart';
 import 'package:foody/components/textfield.dart';
-import 'package:foody/pages/home_page.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final void Function()? onPressed;
 
-  const LoginPage({super.key, required this.onPressed});
+  const RegisterPage({super.key, required this.onPressed});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
-  //login method
-  void login() {
-    //fill out aouthentication logic here
-
-    //if successful, navigate to home page
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
             //message, app name
             Text(
-              "Food Delivery",
+              "Lets Create an Account",
               style: TextStyle(
                 fontSize: 16,
                 color: Theme.of(context).colorScheme.inversePrimary,
@@ -69,25 +61,34 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
             ),
 
+            const SizedBox(height: 10),
+
+            //confirm password input
+            Textfield(
+              controller: confirmPasswordController,
+              hintText: "Confirm Password",
+              obscureText: true,
+            ),
+
             const SizedBox(height: 25),
 
-            //login button
-            Button(text: "Sign In", onPressed: login),
+            //Register button
+            Button(text: "Sign Up", onPressed: () {}),
 
             const SizedBox(height: 25),
 
-            //not registered? register here
+            //already registered? login here
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Not registered? ",
+                Text("already registered? ",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
                     )),
                 const SizedBox(height: 4),
                 GestureDetector(
                   onTap: widget.onPressed,
-                  child: Text("Register here",
+                  child: Text("login here",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.inversePrimary,
                         fontWeight: FontWeight.bold,
