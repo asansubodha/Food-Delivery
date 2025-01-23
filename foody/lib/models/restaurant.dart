@@ -7,7 +7,7 @@ class Restaurant extends ChangeNotifier {
   final List<Food> _menu = [
     // desserts
     Food(
-        name: "Chocolate Ice Cream",
+        name: "Ice Cream",
         description:
             "A delicious chocolate ice cream made with rich cocoa and creamy milk, topped with a variety of delightful add-ons",
         imageUrl: "lib/images/desserts/Chocolate_Ice_Cream.jpeg",
@@ -19,16 +19,16 @@ class Restaurant extends ChangeNotifier {
           Addon(name: "Cherries", price: 225.00),
         ]),
     Food(
-        name: "Fruit Salad with Ice Cream",
+        name: "Fruit Salad",
         description:
             "A delicious fruit salad made with fresh fruits and topped with a scoop of creamy vanilla ice cream",
         imageUrl: "lib/images/desserts/Fruit_Salad_with_Ice_Cream.jpg",
         price: 200.00,
         category: FoodCategory.desserts,
         availableAddons: [
-          Addon(name: "small", price: 100.00),
-          Addon(name: "medium", price: 150.00),
-          Addon(name: "large", price: 200.00),
+          Addon(name: "with Ice Cream small", price: 100.00),
+          Addon(name: "with Ice Cream medium", price: 150.00),
+          Addon(name: "with Ice Cream large", price: 200.00),
         ]),
     Food(
         name: "Fruit Salad",
@@ -68,61 +68,61 @@ class Restaurant extends ChangeNotifier {
 
     //FriedRice
     Food(
-        name: "Chicken Fried Rice ",
+        name: "Fried Rice",
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Chicken_Fried_Rice.jpeg",
         price: 700.00,
         category: FoodCategory.FriedRice,
         availableAddons: [
-          Addon(name: "small", price: 700.00),
-          Addon(name: "medium", price: 750.00),
-          Addon(name: "large", price: 900.00),
+          Addon(name: "chicken small", price: 700.00),
+          Addon(name: "chicken medium", price: 750.00),
+          Addon(name: "chicken large", price: 900.00),
         ]),
     Food(
-        name: "Egg Fried Rice ",
+        name: "Fried Rice",
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Egg_Fried_Rice.jpeg",
         price: 800.00,
         category: FoodCategory.FriedRice,
         availableAddons: [
-          Addon(name: "small", price: 800.00),
-          Addon(name: "medium", price: 850.00),
-          Addon(name: "large", price: 900.00),
+          Addon(name: "Egg small", price: 800.00),
+          Addon(name: "Egg medium", price: 850.00),
+          Addon(name: "Egg large", price: 900.00),
         ]),
     Food(
-        name: "Seafood_fried_rice",
+        name: "fried rice",
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Seafood_fried_rice.jpeg",
         price: 800.00,
         category: FoodCategory.FriedRice,
         availableAddons: [
-          Addon(name: "small", price: 800.00),
-          Addon(name: "medium", price: 850.00),
-          Addon(name: "large", price: 900.00),
+          Addon(name: "Seafood small", price: 800.00),
+          Addon(name: "Seafood medium", price: 850.00),
+          Addon(name: "Seafood large", price: 900.00),
         ]),
     Food(
-        name: "Vegetable Fried Rice",
+        name: "Fried Rice",
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Vegetable_Fried_Rice.jpeg",
         price: 800.00,
         category: FoodCategory.FriedRice,
         availableAddons: [
-          Addon(name: "small", price: 800.00),
-          Addon(name: "medium", price: 850.00),
-          Addon(name: "large", price: 900.00),
+          Addon(name: "Vegetable small", price: 800.00),
+          Addon(name: "Vegetable medium", price: 850.00),
+          Addon(name: "Vegetable large", price: 900.00),
         ]),
 
     //KottuRoti
     Food(
-        name: "cheese_chicken_kottu",
+        name: "chicken kottu",
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/KottuRoti/cheese_chicken_kottu.jpeg",
         price: 800.00,
         category: FoodCategory.KottuRoti,
         availableAddons: [
-          Addon(name: "small", price: 800.00),
-          Addon(name: "medium", price: 850.00),
-          Addon(name: "large", price: 900.00),
+          Addon(name: "cheese small", price: 800.00),
+          Addon(name: "cheese medium", price: 850.00),
+          Addon(name: "cheese large", price: 900.00),
         ]),
     Food(
         name: "Chicken kottu",
@@ -174,6 +174,7 @@ class Restaurant extends ChangeNotifier {
 
   // Getters
   List<Food> get menu => _menu;
+  List<CartItem> get cart => _cart;
 
   // user cart
   List<CartItem> _cart = [];

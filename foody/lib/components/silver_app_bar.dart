@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foody/pages/cart_page.dart';
 
 class MySilverAppBar extends StatelessWidget {
   final Widget child;
@@ -17,7 +18,15 @@ class MySilverAppBar extends StatelessWidget {
         // Add a shopping cart icon button
         IconButton(
           icon: Icon(Icons.shopping_cart),
-          onPressed: () {},
+          onPressed: () {
+            //go to cart page
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CartPage(),
+              ),
+            );
+          },
         ),
       ],
       backgroundColor: Theme.of(context).colorScheme.surface,
