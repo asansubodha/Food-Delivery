@@ -7,6 +7,7 @@ import 'package:foody/components/silver_app_bar.dart';
 import 'package:foody/components/tab_bar.dart';
 import 'package:foody/models/food.dart';
 import 'package:foody/models/restaurant.dart';
+import 'package:foody/pages/food_page.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,7 +44,6 @@ class _HomePageState extends State<HomePage>
   //return list of foods in the selected category
   List<Widget> getFoodInThisCategory(List<Food> fullMenu) {
     return FoodCategory.values.map((category) {
-
       // get category menu
       List<Food> categoryMenu = _filterMenuByCategory(category, fullMenu);
 
@@ -57,7 +57,12 @@ class _HomePageState extends State<HomePage>
             // return food tile
             return FoodTile(
               food: food,
-              onTap: () {},
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FoodPage(food: food),
+                ),
+              ),
             );
           });
     }).toList();
