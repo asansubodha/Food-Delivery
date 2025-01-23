@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:foody/models/cart_item.dart';
 import 'package:foody/models/food.dart';
 
 class Restaurant extends ChangeNotifier {
@@ -109,7 +111,7 @@ class Restaurant extends ChangeNotifier {
           Addon(name: "medium", price: 850.00),
           Addon(name: "large", price: 900.00),
         ]),
-    
+
     //KottuRoti
     Food(
         name: "cheese_chicken_kottu",
@@ -173,17 +175,87 @@ class Restaurant extends ChangeNotifier {
   // Getters
   List<Food> get menu => _menu;
 
+  // user cart
+  List<CartItem> _cart = [];
+
   /*operations*/
   //add to cart
+  void addToCart(Food food, List<Addon> selectedAddons) {
+    //check if food is already in cart
+    CartItem? cartItem = _cart.firstWhereOrNull((item) {
+      //check if food is the same
+      bool isSameFood = item.food == food;
+
+      // check if the list of selected addons is the same
+      bool isSameAddons = ListEquality().equals(
+        item.selectedAddons,
+        selectedAddons,
+      );
+      return isSameFood && isSameAddons;
+    });
+
+    // if item already exists, increase its quantity
+    if (cartItem != null) {
+      cartItem.quantity++;
+    }
+    //else, add new cart item
+    else {
+      _cart.add(
+        CartItem(
+          food: food,
+          selectedAddons: selectedAddons,
+        ),
+      );
+    }
+    notifyListeners();
+  }
 
   //remove from cart
+  void removeFrmCart(CartItem cartItem){
+    int cartindex = _cart.indexOf(cartItem);
+
+    if(cartItem != -1){
+      if (_cart[cartindex].quantity > 1) {
+        _cart[cartindex].quantity--;
+      }
+      else{
+        _cart.removeAt(cartindex);
+      }
+    }
+    notifyListeners();
+  }
 
   //get tatal price of cart
+  double getTotalPrice(){
+    double total = 0.0;
+
+    for (CartItem cartItem in _cart){
+      double itemTotal = cartItem.food.price;
+
+      for (Addon addon in cartItem.selectedAddons) {
+        itemTotal += addon.price;
+      }
+      total += itemTotal * cartItem.quantity;
+    }
+    return total;
+  }
 
   //total number of items in cart
+  int getTotalItemCount(){
+    int totalItemCount = 0;
+
+    for (CartItem cartItem in _cart){
+      totalItemCount += cartItem.quantity;
+    }
+
+    return totalItemCount;
+  }
 
   //clear cart
-  
+  void clearCart(){
+    _cart.clear();
+    notifyListeners();
+  }
 
   /*helpers*/
 
@@ -192,6 +264,4 @@ class Restaurant extends ChangeNotifier {
   //format double value to currency
 
   //format list of addons to string summary
-
-
 }
