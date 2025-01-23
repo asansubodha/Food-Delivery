@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:foody/models/food.dart';
 
-class Returent {
+class Restaurant extends ChangeNotifier {
   final List<Food> _menu = [
     // desserts
     Food(
@@ -69,7 +70,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Chicken_Fried_Rice.jpeg",
         price: 700.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.FriedRice,
         availableAddons: [
           Addon(name: "small", price: 700.00),
           Addon(name: "medium", price: 750.00),
@@ -80,7 +81,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Egg_Fried_Rice.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.FriedRice,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
@@ -91,7 +92,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Seafood_fried_rice.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.FriedRice,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
@@ -102,7 +103,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/FriedRice/Vegetable_Fried_Rice.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.FriedRice,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
@@ -115,7 +116,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/KottuRoti/cheese_chicken_kottu.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.KottuRoti,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
@@ -126,7 +127,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/KottuRoti/Chicken_kottu.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.KottuRoti,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
@@ -139,7 +140,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/Noddles/chicken_noodles.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.Noddles,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
@@ -150,7 +151,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/Noddles/chicken_noodles.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.Noddles,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
@@ -161,7 +162,7 @@ class Returent {
         description: "A delicious chicken fried rice made with fresh chicken",
         imageUrl: "lib/images/Noddles/chicken_noodles.jpeg",
         price: 800.00,
-        category: FoodCategory.Drinks,
+        category: FoodCategory.Noddles,
         availableAddons: [
           Addon(name: "small", price: 800.00),
           Addon(name: "medium", price: 850.00),
