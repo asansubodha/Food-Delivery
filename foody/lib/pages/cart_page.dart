@@ -3,6 +3,7 @@ import 'package:foody/components/button.dart';
 import 'package:foody/components/my_cart_tile.dart';
 import 'package:foody/models/cart_item.dart';
 import 'package:foody/models/restaurant.dart';
+import 'package:foody/pages/payment_page.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
@@ -55,7 +56,6 @@ class CartPage extends StatelessWidget {
           ),
           body: Column(
             children: [
-
               //list of cart items
               Expanded(
                 child: Column(
@@ -72,7 +72,7 @@ class CartPage extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 // get individual cart item
                                 final cartItem = userCart[index];
-                
+
                                 // return cart tile UI
                                 return MyCartTile(cartItem: cartItem);
                               },
@@ -83,7 +83,15 @@ class CartPage extends StatelessWidget {
               ),
 
               //button to pay
-              MyButton(text: "Go to checkout", onPressed: (){}),
+              MyButton(
+                text: "Go to checkout",
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentPage(),
+                  ),
+                ),
+              ),
 
               const SizedBox(height: 30),
             ],
