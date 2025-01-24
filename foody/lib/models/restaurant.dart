@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:foody/components/reciept.dart';
 import 'package:foody/models/cart_item.dart';
 import 'package:foody/models/food.dart';
+import 'package:intl/intl.dart';
 
 class Restaurant extends ChangeNotifier {
   final List<Food> _menu = [
@@ -177,7 +179,7 @@ class Restaurant extends ChangeNotifier {
   List<CartItem> get cart => _cart;
 
   // user cart
-  List<CartItem> _cart = [];
+  final List<CartItem> _cart = [];
 
   /*operations*/
   //add to cart
@@ -212,14 +214,13 @@ class Restaurant extends ChangeNotifier {
   }
 
   //remove from cart
-  void removeFrmCart(CartItem cartItem){
+  void removeFrmCart(CartItem cartItem) {
     int cartindex = _cart.indexOf(cartItem);
 
-    if(cartItem != -1){
+    if (cartItem != -1) {
       if (_cart[cartindex].quantity > 1) {
         _cart[cartindex].quantity--;
-      }
-      else{
+      } else {
         _cart.removeAt(cartindex);
       }
     }
@@ -227,10 +228,10 @@ class Restaurant extends ChangeNotifier {
   }
 
   //get tatal price of cart
-  double getTotalPrice(){
+  double getTotalPrice() {
     double total = 0.0;
 
-    for (CartItem cartItem in _cart){
+    for (CartItem cartItem in _cart) {
       double itemTotal = cartItem.food.price;
 
       for (Addon addon in cartItem.selectedAddons) {
@@ -242,10 +243,10 @@ class Restaurant extends ChangeNotifier {
   }
 
   //total number of items in cart
-  int getTotalItemCount(){
+  int getTotalItemCount() {
     int totalItemCount = 0;
 
-    for (CartItem cartItem in _cart){
+    for (CartItem cartItem in _cart) {
       totalItemCount += cartItem.quantity;
     }
 
@@ -253,7 +254,7 @@ class Restaurant extends ChangeNotifier {
   }
 
   //clear cart
-  void clearCart(){
+  void clearCart() {
     _cart.clear();
     notifyListeners();
   }
@@ -261,8 +262,46 @@ class Restaurant extends ChangeNotifier {
   /*helpers*/
 
   //genarate a reciept
+  String DisplayReciept() {
+    final reciept = StringBuffer();
+    reciept.writeln("Your Reciept!");
+    reciept.writeln();
+
+    //format the date to the seconds
+    String formattedDate =
+        DateFormat('yyyy-MM-dd HH:mm').format(DateTime.now());
+
+    reciept.writeln("Date: $formattedDate");
+    reciept.writeln();
+    reciept.writeln("--------------------");
+
+    for (CartItem cartItem in _cart) {
+      reciept.writeln(
+          "${cartItem.food.name} x ${cartItem.quantity} - ${_formatCurrency(cartItem.food.price)}");
+
+      if (cartItem.selectedAddons.isNotEmpty) {
+        reciept.writeln("Addons: ${_formatAddons(cartItem.selectedAddons)}");
+      }
+
+      reciept.writeln();
+    }
+    reciept.writeln("--------------------");
+    reciept.writeln();
+    reciept.writeln("Total Items: ${getTotalItemCount()}");
+    reciept.writeln("Total Price: ${_formatCurrency(getTotalPrice())}");
+
+    return reciept.toString();
+  }
 
   //format double value to currency
+  String _formatCurrency(double value) {
+    return "Rs. ${value.toStringAsFixed(2)}";
+  }
 
   //format list of addons to string summary
+  String _formatAddons(List<Addon> addons) {
+    return addons
+        .map((addon) => "${addon.name}(${_formatCurrency(addon.price)})")
+        .join(", ");
+  }
 }
