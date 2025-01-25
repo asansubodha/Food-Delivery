@@ -22,10 +22,10 @@ class Restaurant extends ChangeNotifier {
           Addon(name: "Cherries", price: 225.00),
         ]),
     Food(
-        name: "Fruit Salad",
+        name: "Fruit Salad with Ice Cream",
         description:
             "A delicious fruit salad made with fresh fruits and topped with a scoop of creamy vanilla ice cream",
-        imageUrl: "lib/images/desserts/Fruit_Salad_with_Ice_Cream.jpg",
+        imageUrl: "lib/images/desserts/Fruit_Salad_with_Ice_Cream.jpeg",
         price: 200.00,
         category: FoodCategory.desserts,
         availableAddons: [
@@ -36,7 +36,7 @@ class Restaurant extends ChangeNotifier {
     Food(
         name: "Fruit Salad",
         description: "A delicious fruit salad made with fresh fruits",
-        imageUrl: "lib/images/desserts/Fruit_salad.jpg",
+        imageUrl: "lib/images/desserts/Fruit_salad.jpeg",
         price: 200.00,
         category: FoodCategory.desserts,
         availableAddons: [
@@ -154,7 +154,7 @@ class Restaurant extends ChangeNotifier {
     Food(
         name: "Egg Noodles",
         description: "A delicious chicken fried rice made with fresh chicken",
-        imageUrl: "lib/images/Noddles/chicken_noodles.jpeg",
+        imageUrl: "lib/images/Noddles/Egg_Noodles.jpeg",
         price: 800.00,
         category: FoodCategory.Noddles,
         availableAddons: [
@@ -165,7 +165,7 @@ class Restaurant extends ChangeNotifier {
     Food(
         name: "Seafood_Noodles",
         description: "A delicious chicken fried rice made with fresh chicken",
-        imageUrl: "lib/images/Noddles/chicken_noodles.jpeg",
+        imageUrl: "lib/images/Noddles/Seafood_Noodles.jpeg",
         price: 800.00,
         category: FoodCategory.Noddles,
         availableAddons: [
