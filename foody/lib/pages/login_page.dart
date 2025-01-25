@@ -46,74 +46,77 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //logo
-            Icon(
-              Icons.lock_open_outlined,
-              size: 100,
-              color: Theme.of(context).colorScheme.inversePrimary,
-            ),
-
-            const SizedBox(height: 25),
-
-            //message, app name
-            Text(
-              "Food Delivery",
-              style: TextStyle(
-                fontSize: 16,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //logo
+              Icon(
+                Icons.lock_open_outlined,
+                size: 100,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
-            ),
-
-            const SizedBox(height: 25),
-
-            //email input
-            Textfield(
-              controller: emailController,
-              hintText: "Email",
-              obscureText: false,
-            ),
-
-            const SizedBox(height: 10),
-
-            //password input
-            Textfield(
-              controller: passwordController,
-              hintText: "Password",
-              obscureText: true,
-            ),
-
-            const SizedBox(height: 25),
-
-            //login button
-            MyButton(text: "Sign In", onPressed: login),
-
-            const SizedBox(height: 25),
-
-            //not registered? register here
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Not registered? ",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                    )),
-                const SizedBox(height: 4),
-                GestureDetector(
-                  onTap: widget.onPressed,
-                  child: Text("Register here",
+        
+              const SizedBox(height: 25),
+        
+              //message, app name
+              Text(
+                "Food Delivery",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
+              ),
+        
+              const SizedBox(height: 25),
+        
+              //email input
+              Textfield(
+                controller: emailController,
+                hintText: "Email",
+                obscureText: false,
+              ),
+        
+              const SizedBox(height: 10),
+        
+              //password input
+              Textfield(
+                controller: passwordController,
+                hintText: "Password",
+                obscureText: true,
+              ),
+        
+              const SizedBox(height: 25),
+        
+              //login button
+              MyButton(text: "Sign In", onPressed: login),
+        
+              const SizedBox(height: 25),
+        
+              //not registered? register here
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Not registered? ",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.inversePrimary,
-                        fontWeight: FontWeight.bold,
                       )),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(height: 4),
+                  GestureDetector(
+                    onTap: widget.onPressed,
+                    child: Text("Register here",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
