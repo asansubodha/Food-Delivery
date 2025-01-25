@@ -1,14 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:foody/components/reciept.dart';
+import 'package:foody/models/restaurant.dart';
+import 'package:foody/services/database/firestore.dart';
+import 'package:provider/provider.dart';
 
-class DeliveryProgresPage extends StatelessWidget {
+class DeliveryProgresPage extends StatefulWidget {
   const DeliveryProgresPage({super.key});
+
+  @override
+  State<DeliveryProgresPage> createState() => _DeliveryProgresPageState();
+}
+
+class _DeliveryProgresPageState extends State<DeliveryProgresPage> {
+// get access to the db
+  FirestoreService db = FirestoreService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    //if we get to this page, submit to the firestore
+    String order = context.read<Restaurant>().DisplayReciept();
+    db.saveOrder({"reciept": order});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Delivery Progress"),
+        title: Text("Customer Reciept"),
         backgroundColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
@@ -80,7 +100,8 @@ class DeliveryProgresPage extends StatelessWidget {
                 child: IconButton(
                   onPressed: () {},
                   icon: Icon(Icons.message),
-                  color: Theme.of(context).colorScheme.primary,                ),
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
 
               const SizedBox(width: 10.0),

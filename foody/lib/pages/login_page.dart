@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:foody/components/button.dart';
 import 'package:foody/components/textfield.dart';
-import 'package:foody/pages/home_page.dart';
 import 'package:foody/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,16 +21,15 @@ class _LoginPageState extends State<LoginPage> {
   //login method
   Future<void> login() async {
     //fill out aouthentication logic here
-    final _authService = AuthService();
+    final authService = AuthService();
 
     //sign in with email and password
     try {
-      await _authService.signinWithEmailPassword(
+      await authService.signinWithEmailPassword(
         emailController.text,
         passwordController.text,
       );
     }
-
     //show error
     catch (e) {
       showDialog(

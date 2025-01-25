@@ -23,7 +23,6 @@ class _HomePageState extends State<HomePage>
   late TabController _tabController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabController =
         TabController(length: FoodCategory.values.length, vsync: this);
@@ -32,7 +31,6 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     _tabController.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 

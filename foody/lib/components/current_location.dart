@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:foody/models/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class CurrentLocation extends StatelessWidget {
   const CurrentLocation({super.key});
 
   void openLocationSerchBox(BuildContext context) {
     // Open a location search box
+
+    final textController = TextEditingController();
+
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
               title: Text("Your Location"),
               content: TextField(
+                controller: textController,
                 decoration: InputDecoration(
-                    hintText: "Enter your location",
-                    suffixIcon: Icon(Icons.search)),
+                  hintText: "Enter location",
+                ),
               ),
               actions: [
-                TextButton(
-                    onPressed: () => Navigator.pop(context),
+                MaterialButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      textController.clear();
+                    },
                     child: Text("Cancel")),
-                TextButton(
-                    onPressed: () => Navigator.pop(context),
+                MaterialButton(
+                    onPressed: () {
+                      // save the location
+                      String newAddress = textController.text;
+                      context.read<Restaurant>().updateDeliveryAddress(newAddress);
+                      
+                      Navigator.pop(context);
+                      textController.clear();
+                    },
                     child: Text("Save")),
               ],
             ));
@@ -39,8 +55,14 @@ class CurrentLocation extends StatelessWidget {
           GestureDetector(
             onTap: () => openLocationSerchBox(context),
             child: Row(children: [
-              Icon(Icons.location_on),
-              Text("123 Main St, New York, NY 10001"),
+              Consumer<Restaurant>(
+                builder: (context, restaurant, child) =>
+                    Text(restaurant.deliveryAddress,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          fontWeight: FontWeight.bold,
+                        )),
+              ),
               Icon(Icons.keyboard_arrow_down_rounded),
             ]),
           ),

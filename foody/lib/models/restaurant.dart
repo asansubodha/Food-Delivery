@@ -1,6 +1,7 @@
+// ignore_for_file: unrelated_type_equality_checks, non_constant_identifier_names
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:foody/components/reciept.dart';
 import 'package:foody/models/cart_item.dart';
 import 'package:foody/models/food.dart';
 import 'package:intl/intl.dart';
@@ -174,12 +175,18 @@ class Restaurant extends ChangeNotifier {
         ]),
   ];
 
+  // user cart
+  final List<CartItem> _cart = [];
+
+  // delivery address
+  String deliveryAddress = "No. 123, Main Street, Colombo 05";
+
   // Getters
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
+  String get address => deliveryAddress;
 
-  // user cart
-  final List<CartItem> _cart = [];
+  
 
   /*operations*/
   //add to cart
@@ -259,6 +266,12 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 
+  //update dilevery addreass
+  void updateDeliveryAddress(String newAddress) {
+    deliveryAddress = newAddress;
+    notifyListeners();
+  }
+
   /*helpers*/
 
   //genarate a reciept
@@ -289,6 +302,9 @@ class Restaurant extends ChangeNotifier {
     reciept.writeln();
     reciept.writeln("Total Items: ${getTotalItemCount()}");
     reciept.writeln("Total Price: ${_formatCurrency(getTotalPrice())}");
+
+    reciept.writeln();
+    reciept.writeln("Delivery Address: $deliveryAddress");
 
     return reciept.toString();
   }

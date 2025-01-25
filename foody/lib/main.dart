@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:foody/services/auth/auth_gete.dart';
 import 'package:foody/firebase_options.dart';
 import 'package:foody/models/restaurant.dart';
-import 'package:foody/services/auth/login_or_register.dart';
 import 'package:foody/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
 

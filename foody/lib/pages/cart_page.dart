@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foody/components/button.dart';
 import 'package:foody/components/my_cart_tile.dart';
-import 'package:foody/models/cart_item.dart';
 import 'package:foody/models/restaurant.dart';
 import 'package:foody/pages/Payment_page.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +62,7 @@ class CartPage extends StatelessWidget {
                     userCart.isEmpty
                         ? const Expanded(
                             child: Center(
-                              child: const Text("Cart is Empty.."),
+                              child: Text("Cart is Empty.."),
                             ),
                           )
                         : Expanded(

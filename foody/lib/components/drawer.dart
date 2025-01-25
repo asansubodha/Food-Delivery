@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foody/components/drawerTile.dart';
+import 'package:foody/components/drawertile.dart';
 import 'package:foody/pages/setting_page.dart';
 import 'package:foody/services/auth/auth_service.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foody/components/my_quantity_selector.dart';
 import 'package:foody/models/cart_item.dart';
-import 'package:foody/models/food.dart';
 import 'package:foody/models/restaurant.dart';
 import 'package:provider/provider.dart';
 
@@ -51,23 +50,25 @@ class MyCartTile extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
+
+                      const SizedBox(height: 10),
+
+                      // increment or decrement quanity
+                      QuantitySelector(
+                        quantity: cartItem.quantity,
+                        food: cartItem.food,
+                        onDecrement: () {
+                          restaurant.removeFrmCart(cartItem);
+                        },
+                        onIncrement: () {
+                          restaurant.addToCart(
+                              cartItem.food, cartItem.selectedAddons);
+                        },
+                      ),
                     ],
                   ),
 
                   Spacer(),
-
-                  // increment or decrement quanity
-                  QuantitySelector(
-                    quantity: cartItem.quantity,
-                    food: cartItem.food,
-                    onDecrement: () {
-                      restaurant.removeFrmCart(cartItem);
-                    },
-                    onIncrement: () {
-                      restaurant.addToCart(
-                          cartItem.food, cartItem.selectedAddons);
-                    },
-                  ),
                 ],
               ),
             ),
